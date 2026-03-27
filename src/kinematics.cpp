@@ -7,14 +7,16 @@ namespace physics::kinematics
     // Velocidade média: v = d / t
     double velocity(double distance, double time)
     {
-        if (time <= 0) return 0;
+        if (time <= 0)
+            return 0;
         return distance / time;
     }
 
     // Aceleração média: a = Δv / t
     double acceleration(double deltaVelocity, double time)
     {
-        if (time <= 0) return 0;
+        if (time == 0)
+            return 0;
         return deltaVelocity / time;
     }
 
@@ -33,9 +35,7 @@ namespace physics::kinematics
     // Posição no MUV: s = s0 + v0*t + (1/2)*a*t²
     double positionMUV(double initialPosition, double initialVelocity, double acceleration, double time)
     {
-        return initialPosition
-             + initialVelocity * time
-             + 0.5 * acceleration * time * time;
+        return initialPosition + initialVelocity * time + 0.5 * acceleration * time * time;
     }
 
     // Torricelli: v² = v0² + 2*a*Δs
@@ -43,7 +43,8 @@ namespace physics::kinematics
     {
         double value = v0 * v0 + 2 * a * deltaS;
 
-        if (value < 0) return 0; // evita sqrt de número negativo
+        if (value < 0)
+            return 0; // evita sqrt de número negativo
 
         return std::sqrt(value);
     }
