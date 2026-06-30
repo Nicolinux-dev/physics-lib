@@ -1,8 +1,8 @@
 #include <iostream>
-
 #include "kinematics.h"
 #include "dynamics.h"
 #include "energy.h"
+#include "thermodynamics.h"
 
 int main()
 {
@@ -16,9 +16,9 @@ int main()
 
     const double uniformMotionPosition =
         physics::kinematics::calculateUniformMotionPosition(
-            0.0,   // initialPosition (m)
-            10.0,  // velocity (m/s)
-            5.0    // time (s)
+            0.0,  // initialPosition (m)
+            10.0, // velocity (m/s)
+            5.0   // time (s)
         );
 
     const double averageAcceleration =
@@ -44,9 +44,9 @@ int main()
 
     const double finalVelocityFromDisplacement =
         physics::kinematics::calculateFinalVelocityFromDisplacement(
-            5.0,  // initialVelocity (m/s)
-            2.0,  // acceleration (m/s²)
-            20.0  // deltaPosition (m)
+            5.0, // initialVelocity (m/s)
+            2.0, // acceleration (m/s²)
+            20.0 // deltaPosition (m)
         );
 
     std::cout << "Average velocity: " << averageVelocity << " m/s\n";
@@ -103,8 +103,7 @@ int main()
     const double totalMechanicalEnergy =
         physics::energy::calculateTotalMechanicalEnergy(
             kineticEnergy,
-            gravitationalPotentialEnergy
-        );
+            gravitationalPotentialEnergy);
 
     const double work =
         physics::energy::calculateWork(
@@ -127,8 +126,8 @@ int main()
 
     const double workFromKineticEnergyVariation =
         physics::energy::calculateWorkFromKineticEnergyVariation(
-            50.0,  // initialKineticEnergy (J)
-            120.0  // finalKineticEnergy (J)
+            50.0, // initialKineticEnergy (J)
+            120.0 // finalKineticEnergy (J)
         );
 
     std::cout << "Kinetic energy: " << kineticEnergy << " J\n";
@@ -137,9 +136,46 @@ int main()
     std::cout << "Work: " << work << " J\n";
     std::cout << "Power: " << power << " W\n";
     std::cout << "Elastic potential energy: " << elasticPotentialEnergy << " J\n";
-    std::cout << "Work from kinetic energy variation: "
-              << workFromKineticEnergyVariation
-              << " J\n";
+    std::cout << "Work from kinetic energy variation: " << workFromKineticEnergyVariation << " J\n";
+
+    std::cout << "\n=== Thermodynamics ===\n";
+
+    const double temperatureFahrenheit =
+        physics::thermodynamics::celsiusToFahrenheit(
+            32.0 // temperature in Celsius
+        );
+
+    const double temperatureCelsius =
+        physics::thermodynamics::fahrenheitToCelsius(
+            89.6 // temperature in Fahrenheit
+        );
+
+    const double temperatureKelvin =
+        physics::thermodynamics::celsiusToKelvin(
+            32.0 // temperature in Celsius
+        );
+
+    const double temperatureCelsiusFromKelvin =
+        physics::thermodynamics::kelvinToCelsius(
+            305.15 // temperature in Kelvin
+        );
+
+    const double temperatureKelvinFromFahrenheit =
+        physics::thermodynamics::fahrenheitToKelvin(
+            89.6 // temperature in Fahrenheit
+        );
+
+    const double temperatureFahrenheitFromKelvin =
+        physics::thermodynamics::kelvinToFahrenheit(
+            305.15 // temperature in Kelvin
+        );
+
+    std::cout << "Celsius -> Fahrenheit: " << temperatureFahrenheit << " °F\n";
+    std::cout << "Fahrenheit -> Celsius: " << temperatureCelsius << " °C\n";
+    std::cout << "Celsius -> Kelvin: " << temperatureKelvin << " K\n";
+    std::cout << "Kelvin -> Celsius: " << temperatureCelsiusFromKelvin << " °C\n";
+    std::cout << "Fahrenheit -> Kelvin: " << temperatureKelvinFromFahrenheit << " K\n";
+    std::cout << "Kelvin -> Fahrenheit: " << temperatureFahrenheitFromKelvin << " °F\n";
 
     return 0;
 }
