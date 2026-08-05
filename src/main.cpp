@@ -170,12 +170,27 @@ int main()
             305.15 // temperature in Kelvin
         );
 
+    const double sensibleHeat = 
+        physics::thermodynamics::sensibleHeat(
+            2, 4186, 60
+        );
+    
+    const double latentHeat = 
+        physics::thermodynamics::latentHeat(
+            2, 334000
+        );
+    
+
     std::cout << "Celsius -> Fahrenheit: " << temperatureFahrenheit << " °F\n";
     std::cout << "Fahrenheit -> Celsius: " << temperatureCelsius << " °C\n";
     std::cout << "Celsius -> Kelvin: " << temperatureKelvin << " K\n";
     std::cout << "Kelvin -> Celsius: " << temperatureCelsiusFromKelvin << " °C\n";
     std::cout << "Fahrenheit -> Kelvin: " << temperatureKelvinFromFahrenheit << " K\n";
     std::cout << "Kelvin -> Fahrenheit: " << temperatureFahrenheitFromKelvin << " °F\n";
+
+    std::cout << "Sensible heat: " << sensibleHeat << " J\n";
+    std::cout << "Latent heat: " << latentHeat << " J\n";
+
 
     return 0;
 }

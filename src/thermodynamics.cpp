@@ -37,4 +37,16 @@ namespace physics::thermodynamics
     {
         return (kelvin - 273.15) * 9.0 / 5.0 + 32.0;
     }
+
+    // Quantidade de calor sensível trocada por um corpo:  Q = m * c * Δθ
+    double sensibleHeat(double mass, double specificHeat, double deltaTemperature) 
+    {
+        return mass * specificHeat * deltaTemperature;
+    }
+
+    // Calcula a quantidade de calor latente trocada por um corpo durante uma mudança de estado físico: Q = m * L
+    double latentHeat(double mass, double latentHeat) 
+    {
+        return mass * latentHeat;
+    }
 }
